@@ -13,11 +13,11 @@ import com.shooter.screens.MenuScreen;
 public class ShooterGame extends Game {
     // SpriteBatch for rendering
     private SpriteBatch batch;
-    
+
     // Game dimensions
     private int width;
     private int height;
-    
+
     /**
      * Called when the game is created.
      * Initializes the SpriteBatch and sets the initial screen.
@@ -27,11 +27,11 @@ public class ShooterGame extends Game {
         batch = new SpriteBatch();
         width = Gdx.graphics.getWidth();
         height = Gdx.graphics.getHeight();
-        
+
         // Set the initial screen to the menu screen
         setScreen(new MenuScreen(this));
     }
-    
+
     /**
      * Called when the game should render itself.
      * Clears the screen and delegates rendering to the current screen.
@@ -41,21 +41,24 @@ public class ShooterGame extends Game {
         // Clear the screen
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
+
         // Let the screen render itself
         super.render();
     }
-    
+
     /**
      * Called when the game is disposed.
-     * Disposes of the SpriteBatch and the current screen.
+     * Disposes of the SpriteBatch, the current screen, and the asset manager.
      */
     @Override
     public void dispose() {
         batch.dispose();
         getScreen().dispose();
+
+        // Dispose of the asset manager
+        com.shooter.managers.AssetManager.getInstance().dispose();
     }
-    
+
     /**
      * Returns the SpriteBatch for rendering.
      * @return The SpriteBatch
@@ -63,7 +66,7 @@ public class ShooterGame extends Game {
     public SpriteBatch getBatch() {
         return batch;
     }
-    
+
     /**
      * Returns the width of the game window.
      * @return The width
@@ -71,7 +74,7 @@ public class ShooterGame extends Game {
     public int getWidth() {
         return width;
     }
-    
+
     /**
      * Returns the height of the game window.
      * @return The height
