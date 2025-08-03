@@ -3,6 +3,12 @@
 ## Project Overview
 This document outlines the standard guidelines and best practices for developing games using the Junie framework. These guidelines ensure consistency, maintainability, and quality across all game development projects.
 
+## Project work
+
+- Check details for tasks in development-todo.md
+- Update development-todo.md when progressing to show current state of project
+- Use project-summery.md as context and keep it updated while developing
+
 ## Code Style
 
 ### Naming Conventions
