@@ -20,13 +20,19 @@ public class ShooterGame extends Game {
 
     /**
      * Called when the game is created.
-     * Initializes the SpriteBatch and sets the initial screen.
+     * Initializes the SpriteBatch, configures rendering for pixel art, and sets the initial screen.
      */
     @Override
     public void create() {
+        // Configure OpenGL for pixel art rendering
+        Gdx.gl.glHint(GL20.GL_GENERATE_MIPMAP_HINT, GL20.GL_NEAREST);
+
         batch = new SpriteBatch();
         width = Gdx.graphics.getWidth();
         height = Gdx.graphics.getHeight();
+
+        // Configure SpriteBatch for pixel-perfect rendering
+        batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
         // Set the initial screen to the menu screen
         setScreen(new MenuScreen(this));

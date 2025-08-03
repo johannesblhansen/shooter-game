@@ -1,6 +1,6 @@
 # 2D Sidescrolling Shooter Game
 
-This is a classic 2D sidescrolling shooter game built with Java 21 and libGDX. For detailed information about the project, please refer to the [Project Summary](documentation/project-summary.md).
+This is a classic 2D sidescrolling shooter game built with Java 21 and libGDX, featuring a vibrant pixel art visual style. For detailed information about the project, please refer to the [Project Summary](documentation/project-summary.md).
 
 ## Quick Start
 
@@ -41,11 +41,23 @@ src/main/java/com/shooter/
 
 ## Development Status
 
-This project is currently in the initial development phase. Milestone 1 (Project Foundation) has been completed, which includes:
+This project is currently in active development:
+
+### Milestone 1: Project Foundation ✓
 - Project setup with libGDX
 - Basic project structure
 - Core game framework
 - Screen management system
+- Asset management system with placeholder pixel art textures
+
+### Milestone 2: Playable Prototype (In Progress)
+Partial implementation of:
+- Asset management with pixel art style textures
+- Entity system for player, enemies, and projectiles
+- Scrolling background with parallax effect
+- Basic shooting mechanics
+- Simple enemy spawning and movement
+- Collision detection between projectiles and enemies
 
 ## Documentation
 
