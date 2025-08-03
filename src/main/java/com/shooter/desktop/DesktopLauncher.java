@@ -1,7 +1,9 @@
 package com.shooter.desktop;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.graphics.GL20;
 import com.shooter.ShooterGame;
 import com.shooter.utils.Constants;
 
@@ -21,7 +23,7 @@ public class DesktopLauncher {
         config.setWindowedMode(Constants.DEFAULT_WIDTH, Constants.DEFAULT_HEIGHT);
         config.setForegroundFPS(60);
         config.setResizable(true);
-        
+
         // Create and start the application
         new Lwjgl3Application(new ShooterGame(), config);
     }

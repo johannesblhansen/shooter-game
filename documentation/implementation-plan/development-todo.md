@@ -22,12 +22,12 @@ This document provides a comprehensive breakdown of tasks for implementing the 2
 - Implement core game framework ✓
 - **Deliverable**: Empty project with screen management system ✓
 
-### Milestone 2: Playable Prototype
-- Implement player movement and controls
-- Create scrolling background
-- Add basic shooting mechanics
-- Implement simple enemies
-- **Deliverable**: Basic playable prototype with player movement, shooting, and enemies
+### Milestone 2: Playable Prototype ✓
+- Implement player movement and controls ✓
+- Create scrolling background ✓
+- Add basic shooting mechanics ✓
+- Implement simple enemies ✓
+- **Deliverable**: Basic playable prototype with player movement, shooting, and enemies ✓
 
 ### Milestone 3: Core Gameplay
 - Complete collision detection system
@@ -111,48 +111,48 @@ This document provides a comprehensive breakdown of tasks for implementing the 2
 ### Phase 2: Basic Game Mechanics
 
 #### 2.1 Asset Management
-- [ ] 2.1.1 Create AssetLoader class for centralized asset management
-- [ ] 2.1.2 Implement asset loading and unloading methods
-- [ ] 2.1.3 Add placeholder assets for development
-- [ ] 2.1.4 Create asset loading screen
+- [x] 2.1.1 Create AssetLoader class for centralized asset management
+- [x] 2.1.2 Implement asset loading and unloading methods
+- [x] 2.1.3 Add placeholder assets for development
+- [x] 2.1.4 Create asset loading screen
 
 #### 2.2 Entity System Foundation
-- [ ] 2.2.1 Create base Entity class with common properties:
+- [x] 2.2.1 Create base Entity class with common properties:
   - Position
   - Velocity
   - Dimensions
   - Active state
   - Render method
   - Update method
-- [ ] 2.2.2 Create EntityManager class to track and update all game entities
-- [ ] 2.2.3 Implement entity lifecycle management (creation, updates, destruction)
-- [ ] 2.2.4 Add entity pooling for performance optimization
+- [x] 2.2.2 Create EntityManager class to track and update all game entities
+- [x] 2.2.3 Implement entity lifecycle management (creation, updates, destruction)
+- [x] 2.2.4 Add entity pooling for performance optimization
 
 #### 2.3 Player Implementation
-- [ ] 2.3.1 Create Player class extending Entity
-- [ ] 2.3.2 Implement player properties:
+- [x] 2.3.1 Create Player class extending Entity
+- [x] 2.3.2 Implement player properties:
   - Lives
   - Score
   - Current weapon
   - Movement speed
-- [ ] 2.3.3 Implement player input handling
-- [ ] 2.3.4 Add player movement with screen boundaries
-- [ ] 2.3.5 Create player sprite and basic animation
-- [ ] 2.3.6 Implement player state management (alive, invulnerable, etc.)
+- [x] 2.3.3 Implement player input handling
+- [x] 2.3.4 Add player movement with screen boundaries
+- [x] 2.3.5 Create player sprite and basic animation
+- [x] 2.3.6 Implement player state management (alive, invulnerable, etc.)
 
 #### 2.4 Scrolling Background
-- [ ] 2.4.1 Create Background class for managing background layers
-- [ ] 2.4.2 Implement parallax scrolling with multiple layers
-- [ ] 2.4.3 Add seamless background tiling
-- [ ] 2.4.4 Create placeholder background assets
-- [ ] 2.4.5 Synchronize scrolling speed with game difficulty
+- [x] 2.4.1 Create Background class for managing background layers
+- [x] 2.4.2 Implement parallax scrolling with multiple layers
+- [x] 2.4.3 Add seamless background tiling
+- [x] 2.4.4 Create placeholder background assets
+- [x] 2.4.5 Synchronize scrolling speed with game difficulty
 
 #### 2.5 Basic Weapon System
-- [ ] 2.5.1 Create Weapon interface and BasicWeapon implementation
-- [ ] 2.5.2 Create Projectile class extending Entity
-- [ ] 2.5.3 Implement projectile movement and screen boundary handling
-- [ ] 2.5.4 Add weapon cooldown system
-- [ ] 2.5.5 Create visual effects for player weapons
+- [x] 2.5.1 Create Weapon interface and BasicWeapon implementation
+- [x] 2.5.2 Create Projectile class extending Entity
+- [x] 2.5.3 Implement projectile movement and screen boundary handling
+- [x] 2.5.4 Add weapon cooldown system
+- [x] 2.5.5 Create visual effects for player weapons
 
 ### Phase 3: Enemy System and Collision Detection
 

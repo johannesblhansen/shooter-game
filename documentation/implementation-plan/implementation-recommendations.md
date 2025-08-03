@@ -79,8 +79,11 @@ While the detailed implementation tasks document provides a comprehensive breakd
 
 3. **Asset Management**
    - Create an AssetManager early to centralize resource handling
+   - Configure texture filtering for pixel art (use TextureFilter.Nearest)
    - Use texture atlases for sprites to improve performance
+   - Create pixel art assets with clear silhouettes and limited color palettes
    - Consider implementing asset loading screens for larger games
+   - Implement a PixmapDrawer interface for procedurally generated pixel art
 
 4. **Performance Considerations**
    - Implement object pooling for frequently created/destroyed objects (projectiles, effects)

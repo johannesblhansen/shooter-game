@@ -6,6 +6,7 @@ This project aims to create a classic 2D sidescrolling shooter game using Java 2
 
 ## Key Features
 
+- Vibrant pixel art visual style with crisp, detailed sprites
 - Smooth sidescrolling gameplay with parallax backgrounds
 - Player spacecraft with customizable weapons
 - Variety of enemy types with unique movement and attack patterns
@@ -43,6 +44,27 @@ For detailed information about the technical design of this project, please refe
 ## Implementation Recommendations
 
 For practical guidance on implementing this project, please refer to the [Implementation Recommendations](implementation-plan/implementation-recommendations.md).
+
+## Current Progress
+
+### Milestone 1: Project Foundation ✓
+The first milestone has been successfully completed, establishing the foundation for the game:
+
+- **Project Setup**: The libGDX project has been set up with the necessary dependencies, including Core libGDX, Box2D for physics, and Freetype for font rendering.
+- **Project Structure**: The basic package structure has been created, organizing code into logical components (screens, entities, managers, utils).
+- **Core Framework**: The main game class and screen management system have been implemented, allowing for smooth transitions between different game states.
+- **Screen System**: Placeholder screens have been created for the menu, game, and game over states, with proper navigation between them.
+- **Asset Management**: A basic asset management system has been implemented, with placeholder pixel art textures for the player, enemies, projectiles, and background.
+
+### Progress on Milestone 2: Playable Prototype
+Some aspects of Milestone 2 have also been implemented:
+
+- **Asset Management**: The AssetManager class provides centralized asset handling with pixel art style textures.
+- **Entity System**: Basic entity classes have been created for the player, enemies, and projectiles.
+- **Scrolling Background**: A parallax scrolling background has been implemented with multiple layers.
+- **Basic Shooting Mechanics**: A simple weapon system has been implemented with projectile firing and movement.
+- **Simple Enemies**: Basic enemy spawning and movement have been implemented.
+- **Collision Detection**: Simple collision detection between player projectiles and enemies has been added.
 
 ## Conclusion
 
