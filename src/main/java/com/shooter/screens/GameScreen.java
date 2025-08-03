@@ -11,6 +11,7 @@ import com.shooter.entities.Enemy;
 import com.shooter.entities.EnemySpawner;
 import com.shooter.entities.Player;
 import com.shooter.managers.AssetManager;
+import com.shooter.managers.CollisionManager;
 import com.shooter.utils.Constants;
 import com.shooter.weapons.BasicWeapon;
 import com.shooter.weapons.Weapon;
@@ -31,6 +32,9 @@ public class GameScreen extends BaseScreen {
 
     // Weapons
     private Weapon playerWeapon;
+
+    // Managers
+    private CollisionManager collisionManager;
 
     // Asset manager
     private AssetManager assetManager;
@@ -82,6 +86,9 @@ public class GameScreen extends BaseScreen {
             assetManager.getEnemyRegion(),
             32, 32 // Enemy dimensions
         );
+
+        // Create collision manager
+        collisionManager = new CollisionManager(player, enemySpawner.getEnemies(), playerWeapon);
     }
 
     /**
@@ -174,29 +181,14 @@ public class GameScreen extends BaseScreen {
         }
 
         // Check for collisions
-        checkCollisions();
+        boolean playerDied = collisionManager.checkCollisions();
 
         // Check for game over
-        if (!player.isActive()) {
+        if (playerDied || !player.isActive()) {
             transitionTo(new GameOverScreen(game, player.getScore()));
         }
     }
 
-    /**
-     * Checks for collisions between entities.
-     */
-    private void checkCollisions() {
-        // Check for collisions between player projectiles and enemies
-        for (Enemy enemy : enemySpawner.getEnemies()) {
-            if (playerWeapon.checkCollision(enemy)) {
-                // Enemy hit by player projectile
-                if (enemy.damage(1)) {
-                    // Enemy destroyed
-                    player.addScore(enemy.getScoreValue());
-                }
-            }
-        }
-    }
 
     /**
      * Handles user input.
