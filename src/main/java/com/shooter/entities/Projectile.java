@@ -66,6 +66,7 @@ public class Projectile extends Entity {
 
         // No rotation update - projectile should be static
         // rotation += rotationSpeed * delta;
+        rotation = 0; // Explicitly set rotation to 0 to prevent spinning
 
         // Update trail timer
         trailTimer += delta;

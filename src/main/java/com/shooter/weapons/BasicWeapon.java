@@ -54,7 +54,7 @@ public class BasicWeapon implements Weapon {
             this.y = y;
             this.timer = 0.3f; // Duration in seconds
             this.scale = 1.0f;
-            this.rotation = MathUtils.random(0, 360);
+            this.rotation = 0; // Fixed rotation for steady explosion effect
             this.alpha = 1.0f;
         }
 
@@ -139,16 +139,20 @@ public class BasicWeapon implements Weapon {
             // Show muzzle flash
             showMuzzleFlash = true;
             muzzleFlashTimer = 0.25f; // Duration of muzzle flash in seconds (increased for more animation)
-            muzzleFlashX = x;
+
+            // Offset the muzzle flash position forward to prevent overlap with the plane
+            // Use half the projectile width to position the flash closer to the ship
+            float offsetX = playerOwned ? projectileWidth / 2 : -projectileWidth / 2;
+            muzzleFlashX = x + offsetX;
             muzzleFlashY = y;
             muzzleFlashScale = 10.0f; // Initial scale of muzzle flash (5 times bigger)
-            muzzleFlashRotation = MathUtils.random(0, 360); // Random rotation for variety
+            muzzleFlashRotation = 0; // Fixed rotation for steady flash effect
             muzzleFlashAlpha = 1.0f;
 
             // Initialize muzzle flash particles
             for (int i = 0; i < muzzleFlashParticlesX.length; i++) {
-                // Position particles at the muzzle
-                muzzleFlashParticlesX[i] = x;
+                // Position particles at the offset muzzle position
+                muzzleFlashParticlesX[i] = x + offsetX;
                 muzzleFlashParticlesY[i] = y;
 
                 // Random scale for each particle (2.5 to 7.5) - 5x bigger
@@ -277,7 +281,7 @@ public class BasicWeapon implements Weapon {
                     explosion.scale * 1.5f, explosion.scale * 1.5f,
                     explosion.scale * 3.0f, explosion.scale * 3.0f,
                     1, 1,
-                    explosion.rotation
+                    0 // Fixed rotation for steady explosion effect
                 );
 
                 // Inner explosion (yellow-white)
@@ -288,7 +292,7 @@ public class BasicWeapon implements Weapon {
                     explosion.scale * 0.75f, explosion.scale * 0.75f,
                     explosion.scale * 1.5f, explosion.scale * 1.5f,
                     1, 1,
-                    explosion.rotation + 30 // Offset rotation for variety
+                    0 // Fixed rotation for steady explosion effect
                 );
             }
         }
@@ -309,60 +313,69 @@ public class BasicWeapon implements Weapon {
                     float blue = 0.2f - (i / (float)muzzleFlashParticlesX.length) * 0.2f;
 
                     batch.setColor(red, green, blue, muzzleFlashParticlesAlpha[i]);
+                    float particleOriginX = playerOwned ? 0 : muzzleFlashParticlesScale[i] * 2; // Origin at left edge for player, right edge for enemy
                     batch.draw(
                         projectileTexture,
-                        muzzleFlashParticlesX[i] - muzzleFlashParticlesScale[i], 
+                        playerOwned ? muzzleFlashParticlesX[i] : muzzleFlashParticlesX[i] - muzzleFlashParticlesScale[i] * 2, 
                         muzzleFlashParticlesY[i] - muzzleFlashParticlesScale[i],
-                        muzzleFlashParticlesScale[i], muzzleFlashParticlesScale[i],
+                        particleOriginX, muzzleFlashParticlesScale[i],
                         muzzleFlashParticlesScale[i] * 2, muzzleFlashParticlesScale[i] * 2,
                         1, 1,
-                        i * 45 // Each particle has a different rotation
+                        0 // Fixed rotation for steady flash effect
                     );
                 }
             }
 
             // Draw outer glow (larger, more transparent) - enhanced for bigger flash
             batch.setColor(1.0f, 0.8f, 0.2f, muzzleFlashAlpha * 0.5f); // Yellow-orange glow
+            float originX = playerOwned ? 0 : muzzleFlashScale * 3.6f; // Origin at left edge for player, right edge for enemy
             batch.draw(
                 projectileTexture,
-                muzzleFlashX - muzzleFlashScale * 1.8f, muzzleFlashY - muzzleFlashScale * 1.8f,
-                muzzleFlashScale * 1.8f, muzzleFlashScale * 1.8f,
+                playerOwned ? muzzleFlashX : muzzleFlashX - muzzleFlashScale * 3.6f, 
+                muzzleFlashY - muzzleFlashScale * 1.8f,
+                originX, muzzleFlashScale * 1.8f,
                 muzzleFlashScale * 3.6f, muzzleFlashScale * 3.6f,
                 1, 1,
-                muzzleFlashRotation + MathUtils.sin(muzzleFlashTimer * 20) * 10 // Animated rotation
+                0 // Fixed rotation for steady flash effect
             );
 
             // Draw middle layer (new layer for more dynamic effect)
             batch.setColor(1.0f, 0.9f, 0.4f, muzzleFlashAlpha * 0.7f); // Yellow-orange
+            float originXMiddle = playerOwned ? 0 : muzzleFlashScale * 2.4f; // Origin at left edge for player, right edge for enemy
             batch.draw(
                 projectileTexture,
-                muzzleFlashX - muzzleFlashScale * 1.2f, muzzleFlashY - muzzleFlashScale * 1.2f,
-                muzzleFlashScale * 1.2f, muzzleFlashScale * 1.2f,
+                playerOwned ? muzzleFlashX : muzzleFlashX - muzzleFlashScale * 2.4f, 
+                muzzleFlashY - muzzleFlashScale * 1.2f,
+                originXMiddle, muzzleFlashScale * 1.2f,
                 muzzleFlashScale * 2.4f, muzzleFlashScale * 2.4f,
                 1, 1,
-                muzzleFlashRotation - MathUtils.sin(muzzleFlashTimer * 15) * 15 // Animated rotation in opposite direction
+                0 // Fixed rotation for steady flash effect
             );
 
             // Draw inner flash (smaller, brighter)
             batch.setColor(1.0f, 1.0f, 0.8f, muzzleFlashAlpha * 0.8f); // Bright yellow-white
+            float originXInner = playerOwned ? 0 : muzzleFlashScale * 1.5f; // Origin at left edge for player, right edge for enemy
             batch.draw(
                 projectileTexture,
-                muzzleFlashX - muzzleFlashScale * 0.75f, muzzleFlashY - muzzleFlashScale * 0.75f,
-                muzzleFlashScale * 0.75f, muzzleFlashScale * 0.75f,
+                playerOwned ? muzzleFlashX : muzzleFlashX - muzzleFlashScale * 1.5f, 
+                muzzleFlashY - muzzleFlashScale * 0.75f,
+                originXInner, muzzleFlashScale * 0.75f,
                 muzzleFlashScale * 1.5f, muzzleFlashScale * 1.5f,
                 1, 1,
-                muzzleFlashRotation + 45 + MathUtils.cos(muzzleFlashTimer * 25) * 20 // Animated rotation
+                0 // Fixed rotation for steady flash effect
             );
 
             // Draw a bright center point for extra flash effect
             batch.setColor(1.0f, 1.0f, 1.0f, muzzleFlashAlpha);
+            float originXCenter = playerOwned ? 0 : muzzleFlashScale * 0.6f; // Origin at left edge for player, right edge for enemy
             batch.draw(
                 projectileTexture,
-                muzzleFlashX - muzzleFlashScale * 0.3f, muzzleFlashY - muzzleFlashScale * 0.3f,
-                muzzleFlashScale * 0.3f, muzzleFlashScale * 0.3f,
+                playerOwned ? muzzleFlashX : muzzleFlashX - muzzleFlashScale * 0.6f, 
+                muzzleFlashY - muzzleFlashScale * 0.3f,
+                originXCenter, muzzleFlashScale * 0.3f,
                 muzzleFlashScale * 0.6f, muzzleFlashScale * 0.6f,
                 1, 1,
-                muzzleFlashRotation + 90 // Different rotation for variety
+                0 // Fixed rotation for steady flash effect
             );
         }
 
